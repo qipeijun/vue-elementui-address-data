@@ -11,60 +11,60 @@ import ads from "./ads";
  * 数据源 https://github.com/youzan/vant/blob/dev/src/area/demo/area.js
  * @type {({children: [{children, label: string, value: string}], label: string, value: string}|{children: [{children, label: string, value: string}], label: string, value: string}|{children: ({children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string})[], label: string, value: string}|{children: ({children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: [{label: string, value: string}, {label: string, value: string}, {label: string, value: string}, {label: string, value: string}, {label: string, value: string}], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string})[], label: string, value: string}|{children: ({children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: [{label: string, value: string}, {label: string, value: string}, {label: string, value: string}], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string}|{children: ({label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string}|{label: string, value: string})[], label: string, value: string})[], label: string, value: string})[]}
  */
-// export const ADDRESS = () => {
-//   let address = [];
-//   let province = [];
-//   let city = [];
-//   let county = [];
-//   // 遍历省份
-//   for (let [key,val] of Object.entries(ads.province_list)) {
-//     province.push({
-//       label:val,
-//       value:key
-//     })
-//   }
-//
-//   // 遍历城市
-//   for (let [key,val] of Object.entries(ads.city_list)) {
-//     city.push({
-//       label:val,
-//       value:key
-//     })
-//   }
-//
-//   // 遍历区域
-//   for (let [key,val] of Object.entries(ads.county_list)) {
-//     county.push({
-//       label:val,
-//       value:key
-//     })
-//   }
-//
-//   // 组合数据
-//   province.forEach((provinceItem)=>{
-//     let province_code = provinceItem.value.substr(0,2);
-//     let children = [];
-//     city.forEach((cityItem)=>{
-//       let city_code = cityItem.value.substr(0,2);
-//       let city_code_sub = cityItem.value.substr(0,4);
-//       let county_children = [];
-//       county.forEach((countyItem)=>{
-//         let county_code = countyItem.value.substr(0,4);
-//         if (city_code_sub == county_code) {
-//           county_children.push(countyItem)
-//         }
-//       })
-//       cityItem.children = county_children;
-//       if (province_code == city_code) {
-//         children.push(cityItem)
-//       }
-//     })
-//     provinceItem.children = children;
-//     address.push(provinceItem);
-//   })
-//
-//   return address
-// }
+export const ADDRESS = () => {
+  let address = [];
+  let province = [];
+  let city = [];
+  let county = [];
+  // 遍历省份
+  for (let [key,val] of Object.entries(ads.province_list)) {
+    province.push({
+      label:val,
+      value:key
+    })
+  }
+
+  // 遍历城市
+  for (let [key,val] of Object.entries(ads.city_list)) {
+    city.push({
+      label:val,
+      value:key
+    })
+  }
+
+  // 遍历区域
+  for (let [key,val] of Object.entries(ads.county_list)) {
+    county.push({
+      label:val,
+      value:key
+    })
+  }
+
+  // 组合数据
+  province.forEach((provinceItem)=>{
+    let province_code = provinceItem.value.substr(0,2);
+    let children = [];
+    city.forEach((cityItem)=>{
+      let city_code = cityItem.value.substr(0,2);
+      let city_code_sub = cityItem.value.substr(0,4);
+      let county_children = [];
+      county.forEach((countyItem)=>{
+        let county_code = countyItem.value.substr(0,4);
+        if (city_code_sub == county_code) {
+          county_children.push(countyItem)
+        }
+      })
+      cityItem.children = county_children;
+      if (province_code == city_code) {
+        children.push(cityItem)
+      }
+    })
+    provinceItem.children = children;
+    address.push(provinceItem);
+  })
+
+  return address
+}
 
 export const adsTree = [{
   "label": "北京市",
