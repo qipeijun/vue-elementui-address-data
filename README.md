@@ -1,6 +1,6 @@
 ## Vue ElementUi 省市区三级联动
 
-初衷: 网上找了好几个数据源，数据都不是最新的(比如没有深圳市龙华区，深圳市坪山区等)，后面自己又重新找了一个数据源，整理成适用于vue elementUI Cascader的数据格式
+初衷: 网上找了好几个数据源，数据都不是最新的(比如没有深圳市龙华区，深圳市坪山区等)，后面自己又重新找了一个数据源，整理成适用于vue elementUI el-cascader组件的数据格式
 
 原始数据 https://github.com/youzan/vant/blob/dev/src/area/demo/area.js
 
